@@ -29,5 +29,12 @@ namespace HrUserPortal.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string HomeAddress { get; set; }
+
+        [PersonalData]
+        public byte[] ProfilePicture { get; set; }
+
+        [PersonalData]
+        [Column(TypeName = "nvarchar(100)")]
+        public string personalEmail { get; set; }
     }
 }

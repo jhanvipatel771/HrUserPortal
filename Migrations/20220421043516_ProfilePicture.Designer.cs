@@ -4,14 +4,16 @@ using HrUserPortal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HrUserPortal.Migrations
 {
     [DbContext(typeof(HrUserPortalDBContext))]
-    partial class HrUserPortalDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220421043516_ProfilePicture")]
+    partial class ProfilePicture
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,9 +91,6 @@ namespace HrUserPortal.Migrations
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("personalEmail")
-                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 

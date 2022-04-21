@@ -7,72 +7,134 @@
 
 <h4>@ViewData["Title"]</h4>
 <partial name="_StatusMessage" model="Model.StatusMessage" />
+      <hr />
+      <form id="profile-form" method="post"  enctype="multipart/form-data">
+          <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+          <div class="row gutters-sm">
+              <div class="col-md-4 mb-3">
+                  <div class="card">
+                      <div class="card-header">Profile Picture</div>
+                      <div class="card-body">
+                          <div class="d-flex flex-column align-items-center text-center">
+                              <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="card-body text-center">
+                                                @if (Model.Input.ProfilePicture != null)
+                                                {
+                                                    <img id="profilePicture" class="rounded-circle mb-2" style="height:210px; width:200px;object-fit:cover" src="data:image/*;base64,@(Convert.ToBase64String(Model.Input.ProfilePicture))">
+                                                }
+                                                else
+                                                {
+                                                    <img id="profilePicture" style="height:210px; width:200px; object-fit:cover" src="">
+                                                }
+                                                <input type="file"
+                                                       accept=".png,.jpg,.jpeg,.gif,.tif"
+                                                       asp-for="Input.ProfilePicture"
+                                                       class="form-control"
+                                                       style="border:0px!important;padding: 0px; padding-top: 10px;padding-bottom: 30px;"
+                                                       onchange="document.getElementById('profilePicture').src = window.URL.createObjectURL(this.files[0])" />
+                                                <span asp-validation-for="Input.ProfilePicture" class="text-danger"></span>
+                                    </div>
+                          </div>
+                      </div>
+                  </div>
+                            <div class="card mt-3">
+                                <ul class="list-group list-group-flush">
+                                      <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                            <a class="social-icon" href="https://github.com/" target="_blank" >
+                                               <ion-icon name="logo-github"></ion-icon>
+                                            </a>
 
-@*<div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">*@
-          </hr>
-          <form id="profile-form" method="post" class="row col-10">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="col-md-6">
-                <label asp-for="Username"></label>
-                <input asp-for="Username" class="form-control" disabled />
-            </div>
+                                             <a class="social-icon" href="https://www.instagram.com/" target="_blank" >
+                                                <ion-icon name="logo-instagram"></ion-icon>
+                                            </a>
 
-            <div class="col-md-6">
-                <label asp-for="Input.FirstName"></label>
-                <input asp-for="Input.FirstName" class="form-control" />
-                 <span asp-validation-for="Input.FirstName" class="text-danger"></span>
-            </div>
+                                            <a class="social-icon" href="https://twitter.com/" target="_blank" >
+                                                <ion-icon name="logo-twitter"></ion-icon>
+                                            </a>
 
-            <div class="col-md-6">
-                <label asp-for="Input.PhoneNumber"></label>
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            @*<button id="update-profile-button" type="submit" class="btn btn-primary">Save</button>*@
-@*        </form>
-      </div>
-    </div>
-  </div>*@
-@*
-   <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
-            <div class="col-md-6">
-                <label asp-for="Input.Nationality"></label>
-                <input asp-for="Input.Nationality" class="form-control" />
-                <span asp-validation-for="Input.Nationality" class="text-danger"></span>
-            </div>
+                                            <a class="social-icon" href="https://www.facebook.com/" target="_blank" >
+                                                <ion-icon name="logo-facebook"></ion-icon>
+                                            </a>
+                                      </li>
+                                </ul>
+                            </div>
+              </div>
 
-            <div class="col-12">
-                <label asp-for="Input.HomeAddress"></label>
-                <input asp-for="Input.HomeAddress" class="form-control" />
-                <span asp-validation-for="Input.HomeAddress" class="text-danger"></span>
-            </div>
+                      <div class="col-xl-8">
+                          <div class="card mb-4">
+                              <div class="card-header">Account Details</div>
+                                    <div class="card-body">
+                                            <!-- Form Group (username)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" asp-for="Username"></label>
+                                                <input class="form-control" asp-for="Username" disabled/>
+                                            </div>
+                                            <!-- Form Row-->
+                                            <div class="row gx-3 mb-3">
+                                                <!-- Form Group (first name)-->
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" asp-for="Input.FirstName"></label>
+                                                    <input class="form-control" asp-for="Input.FirstName"/>
+                                                     <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                                                </div>
 
-            <div class="col-md-6">
-                <label asp-for="Input.Birthday"></label>
-                <input asp-for="Input.Birthday" class="form-control" />
-                <span asp-validation-for="Input.Birthday" class="text-danger"></span>
-            </div>
+                                               <div class="col-md-6">
+                                                    <label class="small mb-1" asp-for="Input.PhoneNumber"></label>
+                                                    <input class="form-control" asp-for="Input.PhoneNumber" />
+                                                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                                                </div>
+                                            </div>
 
-             <div class="col-md-6">
-                <label asp-for="Input.BloodGroup"></label>
-                <input asp-for="Input.BloodGroup" class="form-control" />
-                <span asp-validation-for="Input.BloodGroup" class="text-danger"></span>
-            </div>
+                                            <div class="row gx-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <label asp-for="Input.BloodGroup"></label>
+                                                        <select  asp-for="Input.BloodGroup" class="form-control">
+                                                          <option selected>Choose...</option>
+                                                          <option>O+</option>
+                                                          <option>AB+</option>
+                                                          <option>A+</option>
+                                                          <option>B+</option>
+                                                          <option>O-</option>
+                                                          <option>AB-</option>
+                                                          <option>A-</option>
+                                                          <option>B-</option>
+                                                        </select>
+                                                         <span asp-validation-for="Input.BloodGroup" class="text-danger"></span>
+                                                </div>
+                                                <!-- Form Group (location)-->
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" asp-for="Input.Nationality"></label>
+                                                    <input class="form-control"  asp-for="Input.Nationality"/>
+                                                     <span asp-validation-for="Input.Nationality" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <!-- Form Group (email address)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" asp-for="Input.HomeAddress"></label>
+                                                <input class="form-control" asp-for="Input.HomeAddress"/>
+                                                 <span asp-validation-for="Input.HomeAddress" class="text-danger"></span>
+                                            </div>
+                                            <!-- Form Row-->
+                                            <div class="row gx-3 mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" asp-for="Input.Birthday"></label>
+                                                    <input class="form-control" asp-for="Input.Birthday" />
+                                                    <span asp-validation-for="Input.Birthday" class="text-danger"></span>
+                                                </div>
 
-                <div class="col-12" style="padding-top:14px;"> <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button></div>
-        </form>
-@*      </div>
-    </div>
-  </div>
-</div>
-*@
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" asp-for="Input.personalEmail"></label>
+                                                    <input class="form-control" asp-for="Input.personalEmail" />
+                                                    <span asp-validation-for="Input.personalEmail" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <!-- Save changes button-->
+                                            <div class="col-12" style="padding-top:14px;"> <button id="update-profile-button" type="submit" class="btn btn-primary">Save</button></div>
+                                    </div>
+                          </div>
+                      </div>
+          </div>
+      </form>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using HrUserPortal.Areas.Identity.Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -56,7 +58,16 @@ namespace HrUserPortal.Areas.Identity.Pages.Account.Manage
 
             [DataType(DataType.Date)]
             [Display(Name ="Birthday")]
-            public string Birthday { get; set; }
+            public DateTime Birthday { get; set; }
+
+
+            [Display(Name = "Profile Picture")]
+            public byte[] ProfilePicture { get; set; }
+
+
+            [DataType(DataType.EmailAddress)]
+            [Display(Name = "Personal EmailID")]
+            public string personalEmail { get; set; }
         }
 
 
@@ -69,7 +80,15 @@ namespace HrUserPortal.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                FirstName = user.FirstName,
+                Birthday = user.Birthday,
+                BloodGroup = user.BloodGroup,
+                Nationality = user.Nationality,
+                HomeAddress = user.HomeAddress,
+                ProfilePicture = user.ProfilePicture,
+                personalEmail = user.personalEmail
+
             };
         }
 
@@ -110,6 +129,47 @@ namespace HrUserPortal.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            if(Input.FirstName != user.FirstName)
+            {
+                user.FirstName = Input.FirstName;
+            }
+
+            if(Input.HomeAddress != user.HomeAddress)
+            {
+                user.HomeAddress = Input.HomeAddress;
+            }
+
+            if (Input.BloodGroup != user.BloodGroup)
+            {
+                user.BloodGroup = Input.BloodGroup;
+            }
+
+            if (Input.Birthday != user.Birthday)
+            {
+                user.Birthday = Input.Birthday;
+            }
+
+            if (Input.Nationality != user.Nationality)
+            {
+                user.Nationality = Input.Nationality;
+            }
+
+            if (Input.personalEmail != user.personalEmail)
+            {
+                user.personalEmail = Input.personalEmail;
+            }
+
+            if (Request.Form.Files.Count > 0)
+            {
+                IFormFile file = Request.Form.Files.FirstOrDefault();
+                using (var dataStream = new MemoryStream())
+                {
+                    await file.CopyToAsync(dataStream);
+                    user.ProfilePicture = dataStream.ToArray();
+                }
+            }
+
+            await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
