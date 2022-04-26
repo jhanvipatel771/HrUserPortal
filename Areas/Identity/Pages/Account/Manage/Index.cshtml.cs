@@ -57,8 +57,17 @@ namespace HrUserPortal.Areas.Identity.Pages.Account.Manage
 
 
             [DataType(DataType.Date)]
-            [Display(Name ="Birthday")]
+            [Display(Name = "Birthday")]
             public DateTime Birthday { get; set; }
+
+            
+            //[DataType(DataType.Date)]
+            //[Display(Name = "Date of Joining")]
+            //public DateTime Doj { get; set; }
+
+
+            [Display(Name = "Designation")]
+            public string Designation { get; set; }
 
 
             [Display(Name = "Profile Picture")]
@@ -87,8 +96,9 @@ namespace HrUserPortal.Areas.Identity.Pages.Account.Manage
                 Nationality = user.Nationality,
                 HomeAddress = user.HomeAddress,
                 ProfilePicture = user.ProfilePicture,
-                personalEmail = user.personalEmail
-
+                personalEmail = user.personalEmail,
+                Designation = user.Designation,
+                //Doj = user.Doj
             };
         }
 
@@ -134,7 +144,17 @@ namespace HrUserPortal.Areas.Identity.Pages.Account.Manage
                 user.FirstName = Input.FirstName;
             }
 
-            if(Input.HomeAddress != user.HomeAddress)
+            //if (Input.Doj != user.Doj)
+            //{
+            //    user.Doj = Input.Doj;
+            //}
+
+            if (Input.Designation != user.Designation)
+            {
+                user.Designation = Input.Designation;
+            }
+
+            if (Input.HomeAddress != user.HomeAddress)
             {
                 user.HomeAddress = Input.HomeAddress;
             }

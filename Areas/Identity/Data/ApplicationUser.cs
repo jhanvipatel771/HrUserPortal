@@ -26,9 +26,16 @@ namespace HrUserPortal.Areas.Identity.Data
         [Column(TypeName = "nvarchar(100)")]
         public DateTime Birthday { get; set; }
 
+
+        //[PersonalData]
+        //[Column(TypeName = "nvarchar(100)")]
+        //public DateTime Doj { get; set; }
+
+
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string HomeAddress { get; set; }
+
 
         [PersonalData]
         public byte[] ProfilePicture { get; set; }
@@ -36,5 +43,10 @@ namespace HrUserPortal.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string personalEmail { get; set; }
+
+       [PersonalData]
+       [Column(TypeName = "nvarchar(100)")]
+       public string Designation { get; set; }
+
     }
 }

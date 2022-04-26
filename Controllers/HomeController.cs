@@ -28,6 +28,11 @@ namespace HrUserPortal.Controllers
             return View();
         }
 
+        public IActionResult Leave()
+        {
+            return View();
+        }
+
         public IActionResult Onboarding()
         {
             return View();

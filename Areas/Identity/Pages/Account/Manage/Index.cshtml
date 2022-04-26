@@ -85,9 +85,25 @@
                                                 </div>
                                             </div>
 
+                                            @*<div class="row gx-3 mb-3">
+                                                <!-- Form Group (first name)-->
+                                               @*<div class="col-md-6">
+                                                    <label class="small mb-1" asp-for="Input.Doj"></label>
+                                                    <input class="form-control" asp-for="Input.Doj" />
+                                                    <span asp-validation-for="Input.Doj" class="text-danger"></span>
+                                                </div>
+                                            </div>*@
+
                                             <div class="row gx-3 mb-3">
-                                                <div class="col-md-6">
-                                                    <label asp-for="Input.BloodGroup"></label>
+
+                                                <div class="col-md-5">
+                                                    <label class="small mb-1" asp-for="Input.Designation"></label>
+                                                    <input class="form-control" asp-for="Input.Designation"/>
+                                                     <span asp-validation-for="Input.Designation" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <label asp-for="Input.BloodGroup" class="small mb-1"></label>
                                                         <select  asp-for="Input.BloodGroup" class="form-control">
                                                           <option selected>Choose...</option>
                                                           <option>O+</option>
@@ -101,20 +117,20 @@
                                                         </select>
                                                          <span asp-validation-for="Input.BloodGroup" class="text-danger"></span>
                                                 </div>
-                                                <!-- Form Group (location)-->
-                                                <div class="col-md-6">
+
+                                                <div class="col-md-4">
                                                     <label class="small mb-1" asp-for="Input.Nationality"></label>
                                                     <input class="form-control"  asp-for="Input.Nationality"/>
                                                      <span asp-validation-for="Input.Nationality" class="text-danger"></span>
                                                 </div>
                                             </div>
-                                            <!-- Form Group (email address)-->
+
                                             <div class="mb-3">
                                                 <label class="small mb-1" asp-for="Input.HomeAddress"></label>
                                                 <input class="form-control" asp-for="Input.HomeAddress"/>
                                                  <span asp-validation-for="Input.HomeAddress" class="text-danger"></span>
                                             </div>
-                                            <!-- Form Row-->
+
                                             <div class="row gx-3 mb-3">
                                                 <div class="col-md-6">
                                                     <label class="small mb-1" asp-for="Input.Birthday"></label>
